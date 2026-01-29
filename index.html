@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<script type="text/javascript" src="https://gc.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=8Hh8FSC0r6kt0V70nlJJeCCSNU6nV5Nlz0TVjaI2uMPbTekPb_7CAH1QsVnO2DQhVGjzlJD_tBJHmckXM5G2dOUSkglEtpBb9ICeRjMtxtoyXZQeFqOWqrh6uyBflD-4Jdfu9UJ1SomEttthGTSyXA" charset="UTF-8"></script><center>
-WELL COME
-Kushal Phuyal
-</center>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional EMI Calculator</title>
+    <title>Professional EMI Calculator | Kushal Phuyal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f4f4f9;
             color: #333;
             margin: 0;
-            padding: 0;
+            padding: 15px;
         }
         .container {
-            max-width: 900px;
-            margin: 50px auto;
+            max-width: 800px;
+            margin: 20px auto;
             background-color: #fff;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
         }
         h1 {
             text-align: center;
             color: #2c3e50;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+        .user-header {
+            text-align: center;
+            font-weight: 600;
+            color: #6c5ce7;
+            margin-bottom: 10px;
         }
         .input-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
             margin-bottom: 20px;
         }
         .input-group {
@@ -42,14 +45,15 @@ Kushal Phuyal
         }
         .input-group label {
             font-weight: bold;
-            margin-bottom: 5px;
-            color: #34495e;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
         }
         .input-group input {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
         }
         .btn {
             width: 100%;
@@ -58,196 +62,125 @@ Kushal Phuyal
             background-color: #27ae60;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-weight: 600;
         }
-        .btn:hover {
-            background-color: #2ecc71;
-        }
-        #result {
-            margin-top: 30px;
-        }
-        #result h3 {
-            color: #2980b9;
-        }
-
-        /* Draggable Summary */
+        /* Mobile Summary Fix */
         .summary {
             background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 250px;
-            cursor: move;
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #2980b9;
+            margin-top: 25px;
         }
+        .summary h3 { margin-top: 0; color: #2980b9; }
+        .summary p { margin: 8px 0; display: flex; justify-content: space-between; border-bottom: 1px dashed #ddd; padding-bottom: 5px; }
 
-        .scrollable-table {
-            max-height: 300px;
-            overflow-y: auto;
+        .table-wrapper {
             margin-top: 20px;
+            overflow-x: auto; /* Horizontal scroll for mobile */
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 600px; /* Force scroll on small phones */
         }
-        table, th, td {
-            border: 1px solid #ddd;
+        th, td {
+            border: 1px solid #eee;
             padding: 12px;
-        }
-        th {
-            background-color: #2980b9;
-            color: white;
-        }
-        td {
             text-align: right;
+            font-size: 0.85rem;
         }
-        td:first-child {
-            text-align: center;
-        }
+        th { background-color: #2980b9; color: white; text-align: center; }
+        tr:nth-child(even) { background-color: #fcfcfc; }
     </style>
 </head>
 <body>
+
+    <div class="user-header">WELCOME - Kushal Phuyal</div>
 
     <div class="container">
         <h1>Professional EMI Calculator</h1>
 
         <div class="input-container">
             <div class="input-group">
-                <label for="principal">Principal Amount</label>
-                <input type="number" id="principal" placeholder="Enter Principal Amount" required>
+                <label>Principal Amount (Rs.)</label>
+                <input type="number" id="principal" placeholder="Ex: 500000">
             </div>
-
             <div class="input-group">
-                <label for="rate">Annual Interest Rate (%)</label>
-                <input type="number" id="rate" step="0.01" placeholder="Enter Interest Rate" required>
+                <label>Annual Interest Rate (%)</label>
+                <input type="number" id="rate" step="0.01" placeholder="Ex: 12">
             </div>
-
             <div class="input-group">
-                <label for="months">Loan Tenure (Months)</label>
-                <input type="number" id="months" placeholder="Enter Loan Tenure" required>
+                <label>Tenure (Months)</label>
+                <input type="number" id="months" placeholder="Ex: 24">
             </div>
         </div>
 
         <button class="btn" onclick="calculateEMI()">Calculate EMI</button>
 
-        <div id="result">
-            <div class="summary" id="summary">
-                <!-- Summary will be displayed here -->
-            </div>
-            
-            <div class="scrollable-table" id="tableContainer">
-                <!-- EMI table will be displayed here -->
-            </div>
+        <div id="result-section" style="display:none;">
+            <div class="summary" id="summary"></div>
+            <div class="table-wrapper" id="tableContainer"></div>
         </div>
     </div>
 
     <script>
         function calculateEMI() {
-            let principal = parseFloat(document.getElementById("principal").value);
+            let principalInput = document.getElementById("principal");
+            let principal = parseFloat(principalInput.value);
             let rate = parseFloat(document.getElementById("rate").value) / 12 / 100;
             let months = parseInt(document.getElementById("months").value);
 
-            if (isNaN(principal) || isNaN(rate) || isNaN(months)) {
-                alert("Please enter valid input.");
+            if (!principal || !rate || !months) {
+                alert("Please fill all fields correctly.");
                 return;
             }
 
-            // EMI calculation
+            document.getElementById("result-section").style.display = "block";
+
             let emi = principal * rate * Math.pow(1 + rate, months) / (Math.pow(1 + rate, months) - 1);
-
-            // Total Interest
             let totalInterest = emi * months - principal;
-
-            // Service charge (1.3% of principal)
             let serviceCharge = principal * 0.013;
-
-            // Insurance charge (0.425% of principal per year)
             let insuranceCharge = principal * 0.00425 * Math.ceil(months / 12);
-
-            // Total service and insurance charge
             let totalCharges = serviceCharge + insuranceCharge;
-
-            // Total cost
             let totalCost = principal + totalInterest + totalCharges;
 
+            // Summary UI
+            document.getElementById("summary").innerHTML = `
+                <h3>Results</h3>
+                <p><span>Monthly EMI:</span> <strong>Rs. ${emi.toFixed(2)}</strong></p>
+                <p><span>Total Interest:</span> <strong>Rs. ${totalInterest.toFixed(2)}</strong></p>
+                <p><span>Service Charge (1.3%):</span> <strong>Rs. ${serviceCharge.toFixed(2)}</strong></p>
+                <p><span>Insurance Charge:</span> <strong>Rs. ${insuranceCharge.toFixed(2)}</strong></p>
+                <p><span>Total Cost:</span> <strong>Rs. ${totalCost.toFixed(2)}</strong></p>
+            `;
+
+            // Table UI
+            let table = `<table><tr><th>No.</th><th>Date</th><th>Principal</th><th>Interest</th><th>Balance</th></tr>`;
+            let tempPrincipal = principal;
             let startDate = new Date();
-            let resultDiv = document.getElementById("result");
-
-            // Clear previous results
-            document.getElementById("summary").innerHTML = "";
-            document.getElementById("tableContainer").innerHTML = "";
-
-            // Display summary
-            let summaryDiv = document.getElementById("summary");
-            summaryDiv.innerHTML += `<h3>EMI Summary</h3>`;
-            summaryDiv.innerHTML += `<p>Monthly EMI: <strong>${emi.toFixed(2)}</strong></p>`;
-            summaryDiv.innerHTML += `<p>Total Interest: <strong>${totalInterest.toFixed(2)}</strong></p>`;
-            summaryDiv.innerHTML += `<p>Service Charge (1.3%): <strong>${serviceCharge.toFixed(2)}</strong></p>`;
-            summaryDiv.innerHTML += `<p>Insurance Charge (0.425% per year): <strong>${insuranceCharge.toFixed(2)}</strong></p>`;
-            summaryDiv.innerHTML += `<p>Total Charges (Service + Insurance): <strong>${totalCharges.toFixed(2)}</strong></p>`;
-            summaryDiv.innerHTML += `<p>Total Cost: <strong>${totalCost.toFixed(2)}</strong></p>`;
-
-            // EMI schedule
-            let tableDiv = document.getElementById("tableContainer");
-            let table = `<table><tr><th>EMI No.</th><th>Payment Date</th><th>Principal Paid</th><th>Interest Paid</th><th>Total EMI</th></tr>`;
 
             for (let i = 1; i <= months; i++) {
-                let interestPaid = principal * rate;
+                let interestPaid = tempPrincipal * rate;
                 let principalPaid = emi - interestPaid;
-                principal -= principalPaid;
+                tempPrincipal -= principalPaid;
+                
+                let payDate = new Date(startDate);
+                payDate.setMonth(payDate.getMonth() + i - 1);
 
-                let paymentDate = new Date(startDate);
-                paymentDate.setMonth(paymentDate.getMonth() + i - 1);
-
-                let formattedDate = paymentDate.toISOString().split("T")[0];
-
-                table += `<tr><td>${i}</td><td>${formattedDate}</td><td>${principalPaid.toFixed(2)}</td><td>${interestPaid.toFixed(2)}</td><td>${emi.toFixed(2)}</td></tr>`;
+                table += `<tr>
+                    <td>${i}</td>
+                    <td>${payDate.toISOString().split('T')[0]}</td>
+                    <td>${principalPaid.toFixed(2)}</td>
+                    <td>${interestPaid.toFixed(2)}</td>
+                    <td>${Math.max(0, tempPrincipal).toFixed(2)}</td>
+                </tr>`;
             }
-
             table += `</table>`;
-            tableDiv.innerHTML += table;
-        }
-
-        // Draggable summary
-        dragElement(document.getElementById("summary"));
-
-        function dragElement(el) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-            el.onmousedown = dragMouseDown;
-
-            function dragMouseDown(e) {
-                e = e || window.event;
-                e.preventDefault();
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
-                document.onmousemove = elementDrag;
-            }
-
-            function elementDrag(e) {
-                e = e || window.event;
-                e.preventDefault();
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                el.style.top = (el.offsetTop - pos2) + "px";
-                el.style.left = (el.offsetLeft - pos1) + "px";
-            }
-
-            function closeDragElement() {
-                document.onmouseup = null;
-                document.onmousemove = null;
-            }
+            document.getElementById("tableContainer").innerHTML = table;
         }
     </script>
-
 </body>
 </html>
-
